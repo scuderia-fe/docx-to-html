@@ -1,6 +1,7 @@
 [package]
 name = "docx-to-html"
 version = "0.1.0"
+repository = "https://github.com/scuderia-fe/docx-to-html"
 authors = ["Alessio Marchi <65831826+kettei-sproutty@users.noreply.github.com>"]
 description = "Converts a docx file to html"
 license = "MIT"

@@ -8,7 +8,7 @@
     "dev": "concurrently \"bun dev:wasm\" \"bun dev:vite\""
   },
   "dependencies": {
-    "docx-to-html": "file:../pkg"
+    "@scuderia-fe/docx-to-html": "file:../pkg"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

@@ -1,0 +1,43 @@
+on:
+  push:
+    branches:
+      - main
+name: release-please
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          release-type: node
+      - uses: actions/checkout@v4
+        if: ${{ steps.release.outputs.release_created }}
+      - run: wasm-pack pack
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Update Package Name
+        run: |
+          # Set the new name for the "name" field
+          new_name="@scuderia-fe/docx-to-html"
+
+          if [ -d "pkg" ]; then
+              cd pkg || exit
+
+              if [ -f "package.json" ]; then
+                  # Update the "name" field in package.json
+                  sed -i "s/\"name\": \".*\",/\"name\": \"$new_name\",/" package.json
+
+                  echo "Package name updated to $new_name"
+              else
+                  echo "Error: package.json not found in the pkg folder."
+              fi
+
+              cd ..
+          else
+              echo "Error: pkg folder not found."
+          fi
+      - run: wasm-pack publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}

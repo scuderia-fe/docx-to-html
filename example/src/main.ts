@@ -1,5 +1,5 @@
 import './main.css';
-import * as wasm from 'docx-to-html';
+import * as wasm from '@scuderia-fe/docx-to-html';
 
 const form = document.querySelector('form') as HTMLFormElement | null;
 const fileInput = document.querySelector('input') as HTMLInputElement | null;

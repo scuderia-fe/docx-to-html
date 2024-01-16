@@ -3,3 +3,9 @@ target
 
 # WASM
 pkg
+
+# NPMJS
+.npmrc
+
+# Env
+.env

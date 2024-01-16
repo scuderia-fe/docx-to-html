@@ -19,8 +19,8 @@ pub fn convert(file: &[u8]) -> String {
   }
 
   let document = read_docx(file).unwrap();
-  let images = &document.images;
-  alert(format!("images: {:?}", images).as_str());
+  // let images = &document.images;
+  // alert(format!("images: {:?}", images).as_str());
 
   document
     .document

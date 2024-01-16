@@ -3,8 +3,6 @@ import topLevelAwait from "vite-plugin-top-level-await";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  plugins: [
-    wasm(),
-    topLevelAwait()
-  ]
+  plugins: [wasm(), topLevelAwait()],
+  base: "/docx-to-html/",
 });

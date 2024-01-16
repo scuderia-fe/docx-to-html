@@ -1,8 +1,14 @@
+name: release-please
+
 on:
   push:
     branches:
       - main
-name: release-please
+
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -10,8 +16,7 @@ jobs:
       - uses: google-github-actions/release-please-action@v4
         id: release
         with:
-          release-type: node
-          path: pkg
+          release-type: rust
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions-rust-lang/setup-rust-toolchain@v1

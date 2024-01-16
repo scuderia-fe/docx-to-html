@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/scuderia-fe/docx-to-html/compare/v0.4.0...v0.4.1) (2024-01-16)
+
+
+### Bug Fixes
+
+* add access public ([ba9c1bb](https://github.com/scuderia-fe/docx-to-html/commit/ba9c1bb1d0d67369138203bb0d7f6b002dce21e2))
+
 ## [0.4.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.3.0...v0.4.0) (2024-01-16)
 
 

@@ -30,11 +30,38 @@
 
 ### Installation
 
+You can install the package with your favorite package manager
+
 ```bash
 npm install @scuderia-fe/docx-to-html
-yarn add @scuderia-fe/docx-to-html
-pnpm add @scuderia-fe/docx-to-html
-bun add @scuderia-fe/docx-to-html
+```
+
+Your project needs to support `asyncWebAssembly`:
+
+- [Vite](https://github.com/Menci/vite-plugin-wasm)
+
+```bash
+npm install --save-dev vite-plugin-wasm vite-plugin-top-level-await
+```
+
+```ts
+import wasm from "vite-plugin-wasm";
+import topLevelAwait from "vite-plugin-top-level-await";
+
+export default defineConfig({
+  plugins: [wasm(), topLevelAwait()],
+});
+```
+
+- Webpack
+
+```js
+module.exports = {
+  experiments: {
+    asyncWebAssembly: true,
+    topLevelAwait: true,
+  },
+};
 ```
 
 ### Usage

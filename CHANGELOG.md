@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.2.0...v0.3.0) (2024-01-16)
+
+
+### Features
+
+* add readme and license ([99f5a85](https://github.com/scuderia-fe/docx-to-html/commit/99f5a8598260e7236f6e50fa7edd71e4e0389064))
+
+
+### Bug Fixes
+
+* **ci:** wasm-pack build ([c5cf4e8](https://github.com/scuderia-fe/docx-to-html/commit/c5cf4e8d0ac04f16e8a3dc5ee21c8805017634f5))
+
 ## [0.2.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.1.1...v0.2.0) (2024-01-16)
 
 

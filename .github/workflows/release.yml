@@ -11,6 +11,7 @@ jobs:
         id: release
         with:
           release-type: node
+          path: pkg
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
       - uses: actions-rust-lang/setup-rust-toolchain@v1

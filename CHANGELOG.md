@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.4.1...v0.5.0) (2024-01-16)
+
+
+### Features
+
+* parse run properties ([4852864](https://github.com/scuderia-fe/docx-to-html/commit/48528649b191807ea39ba89f97e6c2d786e6558c))
+
 ## [0.4.1](https://github.com/scuderia-fe/docx-to-html/compare/v0.4.0...v0.4.1) (2024-01-16)
 
 

@@ -22,6 +22,8 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: cargo fmt --all -- --check
         if: ${{ steps.release.outputs.release_created }}
+      - run: cargo install wasm-pack
+        if: ${{ steps.release.outputs.release_created }}
       - run: wasm-pack pack
         if: ${{ steps.release.outputs.release_created }}
       - name: Update Package Name

@@ -1,9 +1,11 @@
 mod element;
+mod options;
 mod parser;
+mod state;
 mod utils;
 
 use docx_rs::read_docx;
-use element::CONTAINER;
+use state::CONTAINER;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -28,5 +30,5 @@ pub fn convert(file: &[u8]) -> String {
     .iter()
     .for_each(parser::parse_child);
 
-  unsafe { element::CONTAINER.to_string() }
+  unsafe { CONTAINER.to_string() }
 }

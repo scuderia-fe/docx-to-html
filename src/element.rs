@@ -1,13 +1,6 @@
 #![allow(dead_code)]
 use std::fmt::{Display, Formatter, Result};
 
-pub static mut CONTAINER: Element = Element {
-  tag: ElementTag::Div,
-  children: vec![],
-  styles: vec![],
-  classes: vec![],
-};
-
 pub enum ElementTag {
   H1,
   H2,
@@ -22,6 +15,7 @@ pub enum ElementTag {
   Strong,
   A,
   Img,
+  U,
   Ul,
   Ol,
   Li,
@@ -30,6 +24,7 @@ pub enum ElementTag {
   Td,
   Th,
   Thead,
+  I,
   Tbody,
   Tfoot,
   Blockquote,
@@ -39,6 +34,8 @@ pub enum ElementTag {
   Br,
   Sub,
   Sup,
+  S,
+  Mark,
 }
 
 impl ElementTag {
@@ -56,6 +53,8 @@ impl ElementTag {
       "FootnoteReference" => ElementTag::Sup,
       "Hyperlink" => ElementTag::A,
       "Strong" => ElementTag::Strong,
+      "Bold" => ElementTag::Strong,
+      "BoldCS" => ElementTag::Strong,
       _ => ElementTag::P,
     }
   }
@@ -85,6 +84,7 @@ impl ElementTag {
       ElementTag::Thead => "thead",
       ElementTag::Tbody => "tbody",
       ElementTag::Tfoot => "tfoot",
+      ElementTag::I => "i",
       ElementTag::Blockquote => "blockquote",
       ElementTag::Pre => "pre",
       ElementTag::Code => "code",
@@ -92,6 +92,9 @@ impl ElementTag {
       ElementTag::Br => "br",
       ElementTag::Sub => "sub",
       ElementTag::Sup => "sup",
+      ElementTag::S => "s",
+      ElementTag::U => "u",
+      ElementTag::Mark => "mark",
     }
   }
 }

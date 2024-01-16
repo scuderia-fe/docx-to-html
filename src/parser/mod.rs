@@ -5,7 +5,7 @@ mod table;
 
 use docx_rs::DocumentChild;
 
-use crate::element::CONTAINER;
+use crate::state::CONTAINER;
 
 pub fn parse_child(child: &DocumentChild) {
   let children = match child {

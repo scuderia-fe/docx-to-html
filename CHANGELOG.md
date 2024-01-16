@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.3.0...v0.4.0) (2024-01-16)
+
+
+### Features
+
+* local ci ([63b478c](https://github.com/scuderia-fe/docx-to-html/commit/63b478ca0e3f6f43245a041087dd6616519e5b20))
+
 ## [0.3.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.2.0...v0.3.0) (2024-01-16)
 
 

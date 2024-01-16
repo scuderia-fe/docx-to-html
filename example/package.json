@@ -5,7 +5,8 @@
   "scripts": {
     "dev:vite": "vite",
     "dev:wasm": "cd .. && cargo watch -i \".gitignore\" -i \"pkg/*\" -i \"example/*\" -s \"wasm-pack build\" -s \"cd example && bun install\"",
-    "dev": "concurrently \"bun dev:wasm\" \"bun dev:vite\""
+    "dev": "concurrently \"bun dev:wasm\" \"bun dev:vite\"",
+    "build": "vite build"
   },
   "dependencies": {
     "@scuderia-fe/docx-to-html": "file:../pkg"

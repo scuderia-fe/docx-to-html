@@ -1,0 +1,8 @@
+# Node
+node_modules
+
+# Package Manager
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+!bun.lockb

@@ -13,25 +13,23 @@ jobs:
           release-type: node
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.release_created }}
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
+      - run: cargo fmt --all -- --check
       - run: wasm-pack pack
         if: ${{ steps.release.outputs.release_created }}
       - name: Update Package Name
+        if: ${{ steps.release.outputs.release_created }}
         run: |
-          # Set the new name for the "name" field
           new_name="@scuderia-fe/docx-to-html"
-
           if [ -d "pkg" ]; then
               cd pkg || exit
-
               if [ -f "package.json" ]; then
                   # Update the "name" field in package.json
                   sed -i "s/\"name\": \".*\",/\"name\": \"$new_name\",/" package.json
-
                   echo "Package name updated to $new_name"
               else
                   echo "Error: package.json not found in the pkg folder."
               fi
-
               cd ..
           else
               echo "Error: pkg folder not found."

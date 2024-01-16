@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/scuderia-fe/docx-to-html/compare/v0.1.0...v0.1.1) (2024-01-16)
+
+
+### Bug Fixes
+
+* add cargofmt to rust-toolchain ([df75528](https://github.com/scuderia-fe/docx-to-html/commit/df755289217c4c0f34e8ede416b8d11a48d443ad))
+
 ## 0.1.0 (2024-01-16)
 
 

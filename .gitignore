@@ -2,7 +2,10 @@
 target
 
 # WASM
-!pkg/package.json
+pkg
+
+# Node
+node_modules
 
 # NPMJS
 .npmrc

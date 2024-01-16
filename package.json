@@ -1,0 +1,20 @@
+{
+  "name": "docx-to-html",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "simple-git-hooks": {
+    "commit-msg": "bun commitlint --edit ${1}"
+  },
+  "scripts": {
+    "rename": "bun scripts/rename.mjs"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@commitlint/cli": "^18.4.4",
+    "@commitlint/config-conventional": "^18.4.4",
+    "simple-git-hooks": "^2.9.0"
+  }
+}

@@ -9,3 +9,6 @@ target
 
 # Env
 .env
+
+# Misc
+.DS_Store

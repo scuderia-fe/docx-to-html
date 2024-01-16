@@ -17,10 +17,12 @@
   <a href="https://github.com/scuderia-fe/docx-to-html/graphs/contributors">
    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors-anon/scuderia-fe/docx-to-html">
   </a>
-  <a href="https://opensource.org/licenses/Apache-2.0">
+  <a href="https://opensource.org/licenses/MIT">
     <img alt="GitHub License" src="https://img.shields.io/github/license/scuderia-fe/docx-to-html">
   </a>
-  <img alt="NPM Version" src="https://img.shields.io/npm/v/%40scuderia-fe%2Fdocx-to-html">
+  <a href="https://www.npmjs.com/package/@scuderia-fe/docx-to-html">
+    <img alt="NPM Version" src="https://img.shields.io/npm/v/%40scuderia-fe%2Fdocx-to-html">
+  </a>
   <br>
 </h4>
 

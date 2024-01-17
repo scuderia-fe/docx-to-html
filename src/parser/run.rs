@@ -5,14 +5,23 @@ use crate::element::{ElementChildren, ElementTag};
 pub struct RunElement {
   pub tags: Vec<ElementTag>,
   pub text: String,
+  pub style: Vec<String>,
 }
 
 impl RunElement {
   pub fn to_string(&self) -> String {
     let mut string = String::new();
 
-    self.tags.iter().for_each(|tag| {
-      string.push_str(&format!("<{}>", tag.to_string()));
+    self.tags.iter().enumerate().for_each(|(index, tag)| {
+      if index == 0 {
+        string.push_str(&format!(
+          "<{} style=\"{}\">",
+          tag.to_string(),
+          self.style.join(";")
+        ));
+      } else {
+        string.push_str(&format!("<{}>", tag.to_string()));
+      }
     });
 
     string.push_str(&self.text);
@@ -29,6 +38,7 @@ pub fn analyze_run_properties(run_properties: &RunProperty) -> RunElement {
   let mut element = RunElement {
     tags: vec![ElementTag::Span],
     text: String::new(),
+    style: vec![],
   };
 
   if let Some(style) = &run_properties.style {
@@ -54,6 +64,19 @@ pub fn analyze_run_properties(run_properties: &RunProperty) -> RunElement {
   if run_properties.highlight.is_some() {
     element.tags.push(ElementTag::Mark);
   };
+
+  if let Some(color) = &run_properties.color.as_ref() {
+    let value = &color.val;
+    if value.len().eq(&6) || value.len().eq(&8) {
+      if let Ok(_) = u32::from_str_radix(&value, 16) {
+        element.style.push(format!("color: #{}", value));
+      } else {
+        element.style.push(format!("color: {}", value));
+      }
+    } else {
+      element.style.push(format!("color: {}", value));
+    }
+  }
 
   // TODO: superscript and subscript
   // if run.run_property.vert_align.is_some() {

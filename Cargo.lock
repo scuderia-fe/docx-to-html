@@ -84,8 +84,7 @@ checksum = "248e3bacc7dc6baa3b21e405ee045c3047101a49145e7e9eca583ab4c2ca5345"
 [[package]]
 name = "docx-rs"
 version = "0.4.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "618e1e09f4fd9b619f83e3b267d2225b060da2350c54e4e8929acc403f9b77a2"
+source = "git+https://github.com/kettei-sproutty/docx-rs?branch=main#6441f26f6935a6fedba11e20d53876d4ddddfcad"
 dependencies = [
  "base64",
  "image",

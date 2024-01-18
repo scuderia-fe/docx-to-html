@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.5.0...v0.6.0) (2024-01-18)
+
+
+### Features
+
+* **converter:** add images ([2229763](https://github.com/scuderia-fe/docx-to-html/commit/2229763e90959f2364aefda7bccdbc40b1b80e06))
+* **parser:** add color ([7dbbb82](https://github.com/scuderia-fe/docx-to-html/commit/7dbbb82412e3d3a5e78eff43ab09baa396ee6f34))
+
 ## [0.5.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.4.1...v0.5.0) (2024-01-16)
 
 

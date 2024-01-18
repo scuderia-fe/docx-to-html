@@ -90,7 +90,7 @@ checksum = "248e3bacc7dc6baa3b21e405ee045c3047101a49145e7e9eca583ab4c2ca5345"
 [[package]]
 name = "docx-rs"
 version = "0.4.7"
-source = "git+https://github.com/kettei-sproutty/docx-rs?branch=main#6441f26f6935a6fedba11e20d53876d4ddddfcad"
+source = "git+https://github.com/kettei-sproutty/docx-rs?branch=main#bf38f41502c5ad8fd80e1e20a1f52cec76bab838"
 dependencies = [
  "base64 0.13.1",
  "image",

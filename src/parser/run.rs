@@ -1,4 +1,4 @@
-use docx_rs::{Drawing, DrawingData, Run, RunChild, RunProperty, Text};
+use docx_rs::{Drawing, DrawingData, Run, RunChild, RunProperty, Text, VertAlignType};
 
 use crate::{
   element::{ElementChildren, ElementTag},
@@ -82,16 +82,14 @@ pub fn analyze_run_properties(run_properties: &RunProperty) -> RunElement {
     }
   }
 
-  // TODO: superscript and subscript
-  // if run.run_property.vert_align.is_some() {
-  //   if let Some(val) = &run.run_property.vert_align.as_ref().unwrap().val {
-  //     match val.as_str() {
-  //       "superscript" => element.tags.push(ElementTag::Sup),
-  //       "subscript" => element.tags.push(ElementTag::Sub),
-  //       _ => (),
-  //     }
-  //   }
-  // };
+  if let Some(vert_align) = &run_properties.vert_align {
+    match vert_align.val {
+      VertAlignType::SuperScript => element.tags.push(ElementTag::Sup),
+      VertAlignType::SubScript => element.tags.push(ElementTag::Sub),
+      VertAlignType::Baseline => (),
+      _ => (),
+    }
+  };
 
   element
 }

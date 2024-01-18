@@ -6,6 +6,8 @@ authors = ["Alessio Marchi <65831826+kettei-sproutty@users.noreply.github.com>"]
 description = "Converts a docx file to html"
 license = "MIT"
 edition = "2018"
+homepage = "https://scuderia-fe.github.io/docx-to-html/"
+keywords = ["docx-to-html", "docx-2-html", "docx", "office", "ms-office"]
 
 [lib]
 name = "docx_to_html"

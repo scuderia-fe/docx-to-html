@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 use std::fmt::{Display, Formatter, Result};
 
+#[derive(PartialEq, Eq)]
 pub enum ElementTag {
   H1,
   H2,
@@ -111,6 +112,7 @@ pub enum ElementChildren {
 }
 
 pub struct Element {
+  pub id: Option<String>,
   pub tag: ElementTag,
   pub styles: Vec<String>,
   pub classes: Vec<String>,
@@ -138,6 +140,7 @@ impl Element {
 impl Default for Element {
   fn default() -> Self {
     Element {
+      id: None,
       tag: ElementTag::P,
       children: vec![],
       styles: vec![],

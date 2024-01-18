@@ -1,6 +1,10 @@
-use docx_rs::{Run, RunChild, RunProperty, Text};
+use docx_rs::{Drawing, DrawingData, Run, RunChild, RunProperty, Text};
 
-use crate::element::{ElementChildren, ElementTag};
+use crate::{
+  element::{ElementChildren, ElementTag},
+  image::HtmlImage,
+  state::IMAGES,
+};
 
 pub struct RunElement {
   pub tags: Vec<ElementTag>,
@@ -100,6 +104,32 @@ fn analyze_run_text(text: &Text) -> Option<ElementChildren> {
   Some(ElementChildren::Text(text.text.to_string()))
 }
 
+fn analyze_run_image(image: &Drawing) -> Option<ElementChildren> {
+  match &image.data {
+    Some(DrawingData::Pic(pic)) => unsafe {
+      let image = IMAGES.iter().find(|picture| picture.id.eq(&pic.id));
+      if image.is_none() {
+        return None;
+      }
+
+      let image = image.unwrap();
+      if image.src.is_empty() {
+        return None;
+      }
+
+      let img = HtmlImage {
+        id: image.id.clone(),
+        src: image.src.clone(),
+        size: pic.size,
+      };
+
+      return Some(ElementChildren::Text(img.to_string()));
+    },
+    Some(DrawingData::TextBox(_)) => None,
+    None => None,
+  }
+}
+
 pub fn analyze_run(run: &Run) -> Vec<ElementChildren> {
   let mut element = analyze_run_properties(&run.run_property);
 
@@ -108,6 +138,7 @@ pub fn analyze_run(run: &Run) -> Vec<ElementChildren> {
     .iter()
     .filter_map(|child| match child {
       RunChild::Text(text) => analyze_run_text(text),
+      RunChild::Drawing(image) => analyze_run_image(image),
       _ => None,
     })
     .collect();

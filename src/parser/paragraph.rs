@@ -1,6 +1,9 @@
 use docx_rs::{Paragraph, ParagraphChild, ParagraphProperty};
 
-use crate::element::{Element, ElementChildren, ElementTag};
+use crate::{
+  alert,
+  element::{Element, ElementChildren, ElementTag},
+};
 
 use super::{
   hyperlink::analyze_hyperlink,
@@ -21,9 +24,19 @@ pub fn analyze_paragraph(paragraph: &Paragraph) -> ElementChildren {
   let mut element = Element::default();
 
   let tag = &paragraph.property.style.as_ref();
-  if tag.is_some() {
-    let tag = &tag.unwrap().val;
-    element.tag = ElementTag::from_style(tag)
+  if let Some(tag) = tag {
+    if tag.val.eq("ListParagraph") {
+      let numbering_property = &paragraph.property.numbering_property.as_ref();
+      if let Some(property) = numbering_property {
+        let id = &property.id.as_ref().unwrap().id;
+        match id {
+          _ => element.tag = ElementTag::Ul,
+        }
+      }
+    } else {
+      let tag = &tag.val;
+      element.tag = ElementTag::from_style(tag);
+    }
   }
 
   let mut run_property = analyze_run_properties(&paragraph.property.run_property);
@@ -34,6 +47,14 @@ pub fn analyze_paragraph(paragraph: &Paragraph) -> ElementChildren {
   paragraph.children.iter().for_each(|child| match child {
     ParagraphChild::Run(run) => {
       let mut children = analyze_run(run);
+      if element.tag == ElementTag::Ul || element.tag == ElementTag::Ol {
+        children.iter_mut().for_each(|child| {
+          if let ElementChildren::Element(child) = child {
+            alert(&format!("child: {}", child.to_string()));
+            child.tag = ElementTag::Li;
+          }
+        });
+      }
       element.children.append(&mut children);
     }
     ParagraphChild::Hyperlink(hyperlink) => {

@@ -1,11 +1,14 @@
 mod element;
+mod image;
 mod options;
 mod parser;
 mod state;
 mod utils;
 
+use base64::{engine::general_purpose, Engine as _};
 use docx_rs::read_docx;
-use state::CONTAINER;
+use image::HtmlImage;
+use state::{CONTAINER, IMAGES};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -18,11 +21,24 @@ pub fn convert(file: &[u8]) -> String {
   utils::set_panic_hook();
   unsafe {
     CONTAINER.children.clear();
+    IMAGES.clear()
   }
 
   let document = read_docx(file).unwrap();
-  // let images = &document.images;
-  // alert(format!("images: {:?}", images).as_str());
+
+  let images = &document.images;
+  images.iter().for_each(|img| {
+    let (id, _file_type, image, _png) = img;
+
+    let src = general_purpose::STANDARD.encode(&image.0);
+    let image = HtmlImage {
+      id: id.to_string(),
+      src: format!("data:image/png;base64,{}", src),
+      ..Default::default()
+    };
+
+    unsafe { IMAGES.push(image) }
+  });
 
   document
     .document

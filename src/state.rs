@@ -1,6 +1,5 @@
 use once_cell::sync::Lazy;
 use std::collections::HashMap;
-use std::sync::Mutex;
 
 use docx_rs::Style;
 

@@ -1,8 +1,11 @@
 use docx_rs::{Table, TableCellContent, TableChild, TableRow, TableRowChild};
 
-use crate::element::{Element, ElementChildren, ElementTag};
+use crate::{
+  element::{Element, ElementChildren, ElementTag},
+  state::STYLE_MAP,
+};
 
-use super::paragraph::analyze_paragraph;
+use super::{paragraph::analyze_paragraph, style::analyze_style};
 
 fn analyze_row(row: &TableRow) -> Vec<ElementChildren> {
   let mut children = vec![];
@@ -11,6 +14,9 @@ fn analyze_row(row: &TableRow) -> Vec<ElementChildren> {
     let TableRowChild::TableCell(cell) = child;
     let mut element = Element {
       tag: ElementTag::Td,
+      styles: vec![
+        "border-collapse: collapse; border-spacing: 0; border: 1px solid black;".to_owned(),
+      ],
       ..Element::default()
     };
 
@@ -35,13 +41,33 @@ fn analyze_row(row: &TableRow) -> Vec<ElementChildren> {
 pub fn analyze_table(table: &Table) -> ElementChildren {
   let mut element = Element {
     tag: ElementTag::Table,
+    styles: vec![
+      "border-collapse: collapse; border-spacing: 0; border: 1px solid black;".to_owned(),
+    ],
     ..Element::default()
+  };
+
+  if let Some(style) = table.property.get_style() {
+    unsafe {
+      if let Some(style) = STYLE_MAP.get(&style.val) {
+        if let Some(based_on) = style.based_on.as_ref() {
+          if let Some(based_on) = STYLE_MAP.get(&based_on.val) {
+            element.styles.append(&mut analyze_style(based_on));
+          }
+        }
+
+        element.styles.append(&mut analyze_style(style));
+      }
+    }
   };
 
   table.rows.iter().for_each(|child| {
     let TableChild::TableRow(row) = child;
     let mut row_element = Element {
       tag: ElementTag::Tr,
+      styles: vec![
+        "border-collapse: collapse; border-spacing: 0; border: 1px solid black;".to_owned(),
+      ],
       ..Element::default()
     };
 

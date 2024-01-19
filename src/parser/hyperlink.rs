@@ -5,8 +5,10 @@ use crate::element::{Element, ElementTag};
 use super::run::analyze_run;
 
 pub fn analyze_hyperlink(hyperlink: &Hyperlink) -> Element {
-  let mut element = Element::default();
-  element.tag = ElementTag::A;
+  let mut element = Element {
+    tag: ElementTag::A,
+    ..Element::default()
+  };
 
   hyperlink.children.iter().for_each(|child| match child {
     ParagraphChild::Run(run) => {

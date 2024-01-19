@@ -1,6 +1,7 @@
 mod hyperlink;
 mod paragraph;
 mod run;
+mod style;
 mod table;
 
 use docx_rs::DocumentChild;
@@ -19,5 +20,5 @@ pub fn parse_child(child: &DocumentChild) {
   }
   let children = children.unwrap();
 
-  unsafe { CONTAINER.children.append(&mut vec![children]) }
+  unsafe { CONTAINER.children.push(children) }
 }

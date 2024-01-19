@@ -8,6 +8,7 @@ use crate::{
 use super::{
   hyperlink::analyze_hyperlink,
   run::{analyze_run, analyze_run_properties},
+  style::analyze_style,
 };
 
 pub fn get_paragraph_properties(properties: &ParagraphProperty) -> Vec<String> {

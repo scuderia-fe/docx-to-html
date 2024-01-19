@@ -24,7 +24,7 @@ pub fn convert(file: &[u8]) -> String {
     IMAGES.clear()
   }
 
-  let document = read_docx(file).unwrap();
+  let mut document = read_docx(file).unwrap();
 
   let images = &document.images;
   images.iter().for_each(|img| {
@@ -38,6 +38,12 @@ pub fn convert(file: &[u8]) -> String {
     };
 
     unsafe { IMAGES.push(image) }
+  });
+
+  document.styles.styles.iter_mut().for_each(|style| {
+    let style = style.clone();
+    let id = style.style_id.clone();
+    unsafe { state::STYLE_MAP.insert(id, style) };
   });
 
   document

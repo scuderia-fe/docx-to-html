@@ -40,7 +40,7 @@ impl RunElement {
 
 pub fn analyze_run_properties(run_properties: &RunProperty) -> RunElement {
   let mut element = RunElement {
-    tags: vec![ElementTag::Span],
+    tags: vec![],
     text: String::new(),
     style: vec![],
   };
@@ -80,6 +80,10 @@ pub fn analyze_run_properties(run_properties: &RunProperty) -> RunElement {
     } else {
       element.style.push(format!("color: {}", value));
     }
+  }
+
+  if element.style.len() > 0 && element.tags.len() == 0 {
+    element.tags.push(ElementTag::Span);
   }
 
   if let Some(vert_align) = &run_properties.vert_align {

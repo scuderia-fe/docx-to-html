@@ -8,6 +8,7 @@ use crate::{
 use super::{
   hyperlink::analyze_hyperlink,
   run::{analyze_run, analyze_run_properties},
+  style::analyze_style,
 };
 
 pub fn get_paragraph_properties(properties: &ParagraphProperty) -> Vec<String> {
@@ -16,6 +17,20 @@ pub fn get_paragraph_properties(properties: &ParagraphProperty) -> Vec<String> {
   if let Some(alignment) = &properties.alignment.as_ref() {
     props.push(format!("text-align: {}", alignment.val));
   };
+
+  if let Some(style) = properties.style.as_ref() {
+    unsafe {
+      if let Some(style) = crate::state::STYLE_MAP.get(&style.val) {
+        if let Some(based_on) = style.based_on.as_ref() {
+          if let Some(based_on) = crate::state::STYLE_MAP.get(&based_on.val) {
+            props.append(&mut analyze_style(&based_on));
+          }
+        }
+
+        props.append(&mut analyze_style(&style));
+      }
+    }
+  }
 
   props
 }

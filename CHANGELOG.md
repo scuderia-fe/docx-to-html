@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.7.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.6.0...v0.7.0) (2024-01-19)
+
+
+### Features
+
+* parse styles ([4111931](https://github.com/scuderia-fe/docx-to-html/commit/4111931c28f6820bd2d7ae3a4015f79056dcd83b))
+
+
+### Bug Fixes
+
+* **check:** remove unused imports ([685360f](https://github.com/scuderia-fe/docx-to-html/commit/685360f7830779f0ef3b984085f3bcb03203adf3))
+
 ## [0.6.0](https://github.com/scuderia-fe/docx-to-html/compare/v0.5.0...v0.6.0) (2024-01-18)
 
 
